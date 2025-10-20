@@ -1,16 +1,26 @@
+from dataclasses import dataclass
+from datetime import date
+from enum import Enum
+from typing import Optional
+
+class Status(Enum):
+    TODO = "todo"
+    DOING = "doing"
+    DONE = "done"
+
+@dataclass
 class Task:
-    def __init__(self, id, title, description, status, deadline=None):
-        self.id = id
-        self.title = title
-        self.description = description
-        self.status = status
-        self.deadline = deadline
+    id: int
+    title: str
+    description: str
+    status: Status
+    deadline: Optional[date] = None
 
-
+@dataclass
 class Project:
-    def __init__(self, id, name, description):
-        self.id = id
-        self.name = name
-        self.description = description
-        self.tasks = []
-        self.task_id_counter = 1
+    id: int
+    name: str
+    description: str
+    tasks: list[Task]
+    task_id_counter: int = 1
+
